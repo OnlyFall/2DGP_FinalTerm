@@ -135,15 +135,15 @@ class JumpUpState:
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
         banana.x += banana.velocity * game_framework.frame_time
         if banana.dir == 1:
-            banana.jumpRange += 150 * game_framework.frame_time
-            banana.y += 150 * game_framework.frame_time
+            banana.jumpRange += 200 * game_framework.frame_time
+            banana.y += 200* game_framework.frame_time
         else:
-            banana.jumpRange += 150 *game_framework.frame_time
-            banana.y += 150 * game_framework.frame_time
+            banana.jumpRange += 200 *game_framework.frame_time
+            banana.y += 200 * game_framework.frame_time
 
         banana.x = clamp(25, banana.x, 1600 - 25)
 
-        if banana.jumpRange >= 150:
+        if banana.jumpRange >= 200:
             banana.add_event(DOWN)
 
 
@@ -184,9 +184,9 @@ class JumpDownState:
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
         banana.x += banana.velocity * game_framework.frame_time
         if banana.dir == 1:
-            banana.y -= 150 * game_framework.frame_time
+            banana.y -= 200 * game_framework.frame_time
         else:
-            banana.y -= 150 * game_framework.frame_time
+            banana.y -= 200 * game_framework.frame_time
 
         banana.x = clamp(25, banana.x, 1600 - 25)
 
