@@ -23,7 +23,7 @@ FRAMES_PER_ACTION = 6
 
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, DIE, DOWN, END = range(9)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, DIE, DOWN, END_GOIDLE, END_GORUN = range(10)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -63,7 +63,7 @@ class IdleState:
         r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
         if (r, g, b) != (78, 201, 17) or (r, g, b) != (67, 119, 108) or (r, g, b) != (45, 132, 114) or (r, g, b) != (106, 150, 194) or (r, g, b) != (70, 106, 144) or (r, g, b) != (46, 79, 114) or (r, g, b) != (78, 163, 146):
             if banana.y > 90:
-                banana.add_event(DOWN)
+                 banana.add_event(DOWN)
 
         print(r, g, b, a)
 
@@ -108,7 +108,8 @@ class RunState:
 
         r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
         if (r, g, b) != (78, 201, 17) or (r, g, b) != (67, 119, 108) or (r, g, b) != (45, 132, 114) or (r, g, b) != (106, 150, 194) or (r, g, b) != (70, 106, 144) or (r, g, b) != (46, 79, 114) or (r, g, b) != (78, 163, 146):
-              banana.add_event(DOWN)
+           if banana.y > 90:
+                banana.add_event(DOWN)
 
     @staticmethod
     def draw(banana):
@@ -150,8 +151,11 @@ class JumpUpState:
             banana.jumpRange += 200 * game_framework.frame_time
             banana.y += 200* game_framework.frame_time
         else:
-            banana.jumpRange += 200 *game_framework.frame_time
+            banana.jumpRange += 200 * game_framework.frame_time
             banana.y += 200 * game_framework.frame_time
+
+        if banana.y > 750:
+            banana.add_event(DOWN)
 
         banana.x = clamp(25, banana.x, 1600 - 25)
 
@@ -203,11 +207,17 @@ class JumpDownState:
         banana.x = clamp(25, banana.x, 1600 - 25)
 
         if banana.y <= 90:
-            banana.add_event(END)
+            if banana.velocity > 0 or banana.velocity < 0:
+                banana.add_event(END_GORUN)
+            else:
+                banana.add_event(END_GOIDLE)
 
         r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
-            banana.add_event(END)
+            if banana.velocity > 0 or banana.velocity < 0:
+                banana.add_event(END_GORUN)
+            else:
+                banana.add_event(END_GOIDLE)
         print(r, g, b, a)
 
 
@@ -225,7 +235,7 @@ next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState, DOWN:JumpDownState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: JumpUpState, DOWN:JumpDownState},
     JumpUpState: {RIGHT_DOWN: JumpUpState, LEFT_DOWN: JumpUpState, RIGHT_UP: JumpUpState, LEFT_UP: JumpUpState, SPACE: JumpUpState, DOWN:JumpDownState},
-    JumpDownState: {END: IdleState,RIGHT_DOWN: JumpDownState, LEFT_DOWN: JumpDownState, RIGHT_UP: JumpDownState, LEFT_UP: JumpDownState, SPACE: JumpDownState}
+    JumpDownState: {END_GOIDLE: IdleState, END_GORUN: RunState, RIGHT_DOWN: JumpDownState, LEFT_DOWN: JumpDownState, RIGHT_UP: JumpDownState, LEFT_UP: JumpDownState, SPACE: JumpDownState}
 }
 
 class Banana:
