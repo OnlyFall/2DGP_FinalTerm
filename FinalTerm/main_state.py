@@ -6,6 +6,7 @@ from pico2d import *
 import game_framework
 import game_world
 
+from Health import Health
 from Banana import Banana
 from background import Back
 
@@ -14,20 +15,24 @@ name = "MainState"
 banana = None
 back = None
 Die = None
+health = None
 StageCount = 0
 shootingTime = 0
 stage = 1
 def enter():
     global banana, back
     global Die
+    global health
     global stage
     global StageCount
     global shootingTime
     stageCount = get_time()
     shootingTime = stageCount
     back = Back(stage)
+    health = Health()
     banana = Banana(stage)
     game_world.add_object(back, 0)
+    game_world.add_object(health, 0)
     game_world.add_object(banana, 1)
 
 

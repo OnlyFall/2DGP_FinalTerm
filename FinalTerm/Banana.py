@@ -23,7 +23,7 @@ FRAMES_PER_ACTION = 6
 
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, DIE, DOWN, END_GOIDLE, END_GORUN = range(10)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, DIE, DOWN, END_IDLE, END_RUN = range(10)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -235,9 +235,9 @@ class JumpDownState:
 
         if banana.y <= 90:
             if banana.velocity > 0 or banana.velocity < 0:
-                banana.add_event(END_GORUN)
+                banana.add_event(END_RUN)
             else:
-                banana.add_event(END_GOIDLE)
+                banana.add_event(END_IDLE)
 
         if banana.stage == 1:
             r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
@@ -252,9 +252,9 @@ class JumpDownState:
 
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             if banana.velocity > 0 or banana.velocity < 0:
-                banana.add_event(END_GORUN)
+                banana.add_event(END_RUN)
             else:
-                banana.add_event(END_GOIDLE)
+                banana.add_event(END_IDLE)
 
     @staticmethod
     def draw(banana):
@@ -269,7 +269,7 @@ next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState, DOWN:JumpDownState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: JumpUpState, DOWN:JumpDownState},
     JumpUpState: {RIGHT_DOWN: JumpUpState, LEFT_DOWN: JumpUpState, RIGHT_UP: JumpUpState, LEFT_UP: JumpUpState, SPACE: JumpUpState, DOWN:JumpDownState},
-    JumpDownState: {END_GOIDLE: IdleState, END_GORUN: RunState, RIGHT_DOWN: JumpDownState, LEFT_DOWN: JumpDownState, RIGHT_UP: JumpDownState, LEFT_UP: JumpDownState, SPACE: JumpDownState}
+    JumpDownState: {END_IDLE: IdleState, END_RUN: RunState, RIGHT_DOWN: JumpDownState, LEFT_DOWN: JumpDownState, RIGHT_UP: JumpDownState, LEFT_UP: JumpDownState, SPACE: JumpDownState}
 }
 
 class Banana:
