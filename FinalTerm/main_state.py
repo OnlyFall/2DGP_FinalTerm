@@ -72,8 +72,8 @@ def update():
         shootingTime = get_time()
 
         for i in range(10):
-            lengthX = 1600 - (-50)
-            lengthY = 800 - (400 - (i * 100))
+            lengthX = 1600 - (-300 + (i * 100))
+            lengthY = 800 - (800 - (i * 100))
 
             shoot = Shoot(1580, 750, -(lengthX / 2), -(lengthY / 2))
             game_world.add_object(shoot, 1)

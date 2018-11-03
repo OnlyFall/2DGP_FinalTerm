@@ -15,6 +15,9 @@ class Back:
         self.step5 = load_image('STEP\\PT_0001.png')
         self.stage = stage
 
+        self.volume = load_music('IngameBGM\\Town8.mp3')
+        self.volume.set_volume(40)
+        self.volume.play(stage)
     def update(self):
         pass
 
