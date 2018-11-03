@@ -12,16 +12,21 @@ from background import Back
 name = "MainState"
 
 banana = None
+back = None
 Die = None
-
+StageCount = 0
+stage = 1
 def enter():
-    global banana
+    global banana, back
     global Die
-
-    back = Back()
-    banana = Banana()
+    global stage
+    global StageCount
+    stageCount = get_time()
+    back = Back(stage)
+    banana = Banana(stage)
     game_world.add_object(back, 0)
     game_world.add_object(banana, 1)
+
 
 
 def exit():
@@ -47,9 +52,19 @@ def handle_events():
 
 
 def update():
+    global StageCount, back
+    global stage
+    if get_time() - StageCount > 10:
+        stage = random.randint(1, 5)
+        back.stageUpdate(stage)
+        StageCount = get_time()
+
+    print(StageCount)
+    print(stage)
     for game_object in game_world.all_objects():
         game_object.update()
-    # fill here
+
+
 
 
 def draw():

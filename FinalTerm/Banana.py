@@ -60,7 +60,7 @@ class IdleState:
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
 
-        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, 800 -  banana.y - 30))
+        r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 -  banana.y - 30))
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             pass
 
@@ -108,7 +108,7 @@ class RunState:
         banana.x += banana.velocity * game_framework.frame_time
         banana.x = clamp(25, banana.x, 1600 - 25)
 
-        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, 800 - banana.y - 30))
+        r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             pass
 
@@ -217,7 +217,7 @@ class JumpDownState:
             else:
                 banana.add_event(END_GOIDLE)
 
-        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, 800 - banana.y - 30))
+        r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             if banana.velocity > 0 or banana.velocity < 0:
                 banana.add_event(END_GORUN)
@@ -242,7 +242,7 @@ next_state_table = {
 
 class Banana:
 
-    def __init__(self):
+    def __init__(self, stage):
         self.x, self.y = 1600 // 2, 90
         self.jumpRange = 0
         self.opacifyValue = 1
@@ -256,7 +256,8 @@ class Banana:
         self.frame = 0
         self.event_que = []
         self.cur_state = IdleState
-        self.CrashImage = PIL.Image.open("STEP\\PT_0005.png")
+        self.stage = stage
+        self.CrashImageStage1 = PIL.Image.open("STEP\\PT_0005.png")
         self.cur_state.enter(self, None)
 
 
