@@ -3,6 +3,11 @@ from pico2d import *
 class Back:
     def __init__(self, stage):
         self.stage1 = load_image('BG\\Stage1Map1.bmp')
+        self.stage2 = load_image('BG\\Stage1Map1.bmp')
+        self.stage3 = load_image('BG\\Stage1Map1.bmp')
+        self.stage4 = load_image('BG\\Stage1Map1.bmp')
+        self.stage5 = load_image('BG\\Stage1Map1.bmp')
+
         self.step1 = load_image('STEP\\PT_0005.png')
         self.step2 = load_image('STEP\\PT_0004.png')
         self.step3 = load_image('STEP\\PT_0003.png')
