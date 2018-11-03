@@ -10,5 +10,5 @@ class Back:
 
     def draw(self):
         self.image.clip_draw(0, 0, 1600, 800, 1600 // 2, 800 // 2)
-        self.step.clip_draw(100, 0, 1600, 800, 1600 // 2, 800 // 2)
+        self.step.clip_draw(100, 0, 1600, 800, 1600 // 2, 800 // 2 - 50)
         #self.image.draw(1200, 30)

@@ -1,5 +1,6 @@
 import game_framework
 from pico2d import *
+import PIL.Image
 import math
 import random
 
@@ -16,7 +17,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 # Boy Action Speed
 # fill expressions correctly
 TIME_PER_ACTION = 0.5
-ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+ACTION_PER_TIME = 0.9 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 6
 
 
@@ -59,6 +60,14 @@ class IdleState:
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
 
+        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
+        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (
+                106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (
+        78, 163, 146):
+            banana.add_event(DOWN)
+
+        print(r, g, b, a)
+
     @staticmethod
     def draw(banana):
         if banana.dir == 1:
@@ -97,6 +106,11 @@ class RunState:
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
         banana.x += banana.velocity * game_framework.frame_time
         banana.x = clamp(25, banana.x, 1600 - 25)
+
+        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
+        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (
+        106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
+            banana.add_event(DOWN)
 
     @staticmethod
     def draw(banana):
@@ -193,6 +207,12 @@ class JumpDownState:
         if banana.y <= 90:
             banana.add_event(END)
 
+        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
+        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
+            banana.add_event(END)
+        print(r, g, b, a)
+
+
 
     @staticmethod
     def draw(banana):
@@ -204,9 +224,9 @@ class JumpDownState:
             banana.image.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
 
 next_state_table = {
-    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState},
-    RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: JumpUpState},
-    JumpUpState:{RIGHT_DOWN: JumpUpState, LEFT_DOWN: JumpUpState, RIGHT_UP: JumpUpState, LEFT_UP: JumpUpState, SPACE: JumpUpState, DOWN:JumpDownState},
+    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState, DOWN:JumpDownState},
+    RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: JumpUpState, DOWN:JumpDownState},
+    JumpUpState: {RIGHT_DOWN: JumpUpState, LEFT_DOWN: JumpUpState, RIGHT_UP: JumpUpState, LEFT_UP: JumpUpState, SPACE: JumpUpState, DOWN:JumpDownState},
     JumpDownState: {END: RunState,RIGHT_DOWN: JumpDownState, LEFT_DOWN: JumpDownState, RIGHT_UP: JumpDownState, LEFT_UP: JumpDownState, SPACE: JumpDownState}
 }
 
@@ -226,6 +246,7 @@ class Banana:
         self.frame = 0
         self.event_que = []
         self.cur_state = IdleState
+        self.CrashImage = PIL.Image.open("STEP\\PT_0005.png")
         self.cur_state.enter(self, None)
 
 
