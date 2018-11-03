@@ -57,6 +57,7 @@ def update():
     if get_time() - StageCount > 10:
         stage = random.randint(1, 5)
         back.stageUpdate(stage)
+        banana.StageUpdate(stage)
         StageCount = get_time()
 
     print(StageCount)

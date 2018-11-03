@@ -60,7 +60,18 @@ class IdleState:
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
 
-        r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 -  banana.y - 30))
+        if banana.stage == 1:
+            r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 2:
+            r, g, b, a = banana.CrashImageStage2.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 3:
+            r, g, b, a = banana.CrashImageStage3.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 4:
+            r, g, b, a = banana.CrashImageStage4.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 5:
+            r, g, b, a = banana.CrashImageStage5.getpixel((banana.x + 100, 800 - banana.y - 30))
+
+             
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             pass
 
@@ -108,7 +119,18 @@ class RunState:
         banana.x += banana.velocity * game_framework.frame_time
         banana.x = clamp(25, banana.x, 1600 - 25)
 
-        r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
+        if banana.stage == 1:
+            r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 2:
+            r, g, b, a = banana.CrashImageStage2.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 3:
+            r, g, b, a = banana.CrashImageStage3.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 4:
+            r, g, b, a = banana.CrashImageStage4.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 5:
+            r, g, b, a = banana.CrashImageStage5.getpixel((banana.x + 100, 800 - banana.y - 30))
+
+
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             pass
 
@@ -217,7 +239,17 @@ class JumpDownState:
             else:
                 banana.add_event(END_GOIDLE)
 
-        r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
+        if banana.stage == 1:
+            r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 2:
+            r, g, b, a = banana.CrashImageStage2.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 3:
+            r, g, b, a = banana.CrashImageStage3.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 4:
+            r, g, b, a = banana.CrashImageStage4.getpixel((banana.x + 100, 800 - banana.y - 30))
+        elif banana.stage == 5:
+            r, g, b, a = banana.CrashImageStage5.getpixel((banana.x + 100, 800 - banana.y - 30))
+
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             if banana.velocity > 0 or banana.velocity < 0:
                 banana.add_event(END_GORUN)
@@ -258,11 +290,18 @@ class Banana:
         self.cur_state = IdleState
         self.stage = stage
         self.CrashImageStage1 = PIL.Image.open("STEP\\PT_0005.png")
+        self.CrashImageStage2 = PIL.Image.open("STEP\\PT_0004.png")
+        self.CrashImageStage3 = PIL.Image.open("STEP\\PT_0003.png")
+        self.CrashImageStage4 = PIL.Image.open("STEP\\PT_0002.png")
+        self.CrashImageStage5 = PIL.Image.open("STEP\\PT_0001.png")
         self.cur_state.enter(self, None)
 
 
     def add_event(self, event):
         self.event_que.insert(0, event)
+
+    def StageUpdate(self, stage):
+        self.stage = stage
 
     def update(self):
         self.cur_state.do(self)
