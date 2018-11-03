@@ -68,7 +68,6 @@ class IdleState:
             if banana.y > 90:
                  banana.add_event(DOWN)
 
-        print(r, g, b, a)
 
     @staticmethod
     def draw(banana):
@@ -224,9 +223,6 @@ class JumpDownState:
                 banana.add_event(END_GORUN)
             else:
                 banana.add_event(END_GOIDLE)
-        print(r, g, b, a)
-
-
 
     @staticmethod
     def draw(banana):
