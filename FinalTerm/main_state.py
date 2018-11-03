@@ -84,7 +84,7 @@ def update():
             lengthY = goY - 800
 
             shoot = Shoot(1580, 750, (lengthX / 2), (lengthY / 2))
-            game_world.add_object(shoot, 1)
+            game_world.add_object(shoot, 2)
 
 
     for game_object in game_world.all_objects():

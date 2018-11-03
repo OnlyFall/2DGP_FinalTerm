@@ -1,7 +1,9 @@
 
 # layer 0: Background Objects
 # layer 1: Foreground Objects
-objects = [[],[]]
+# layer 2: Crash Object
+# layer 3: Heart Image
+objects = [[],[],[]]
 
 
 def add_object(o, layer):
