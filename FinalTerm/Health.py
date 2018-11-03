@@ -9,4 +9,4 @@ class Health:
 
     def draw(self):
         pass
-        #self.image.draw(1200, 30)
+

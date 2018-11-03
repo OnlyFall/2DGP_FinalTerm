@@ -1,7 +1,7 @@
 import random
 import json
 import os
-
+from Shoot import Shoot
 from pico2d import *
 import game_framework
 import game_world
@@ -15,13 +15,16 @@ banana = None
 back = None
 Die = None
 StageCount = 0
+shootingTime = 0
 stage = 1
 def enter():
     global banana, back
     global Die
     global stage
     global StageCount
+    global shootingTime
     stageCount = get_time()
+    shootingTime = stageCount
     back = Back(stage)
     banana = Banana(stage)
     game_world.add_object(back, 0)
@@ -52,13 +55,24 @@ def handle_events():
 
 
 def update():
-    global StageCount, back
+    global StageCount, back, shootingTime
     global stage
     if get_time() - StageCount > 10:
         stage = random.randint(1, 5)
         back.stageUpdate(stage)
         banana.StageUpdate(stage)
         StageCount = get_time()
+
+    if get_time() - shootingTime > 2:
+        shootingTime = get_time()
+
+        for i in range(10):
+            lengthX = 1600 - (-50)
+            lengthY = 800 - (400 - (i * 100))
+
+            shoot = Shoot(1580, 750, -(lengthX / 2), -(lengthY / 2))
+            game_world.add_object(shoot, 1)
+
 
     print(StageCount)
     print(stage)
