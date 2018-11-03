@@ -1,4 +1,5 @@
 import random
+import math
 import json
 import os
 from Shoot import Shoot
@@ -72,15 +73,15 @@ def update():
         shootingTime = get_time()
 
         for i in range(10):
-            lengthX = 1600 - (-300 + (i * 100))
-            lengthY = 800 - (800 - (i * 100))
+            goX = math.cos(180 + 9 * i) * 400 + 1600
+            goY = math.sin(180 + 9 * i) * 400 + 800
+            lengthX = 1600 + (goX)
+            lengthY = 800 + (goY)
 
             shoot = Shoot(1580, 750, -(lengthX / 2), -(lengthY / 2))
             game_world.add_object(shoot, 1)
 
 
-    print(StageCount)
-    print(stage)
     for game_object in game_world.all_objects():
         game_object.update()
 
