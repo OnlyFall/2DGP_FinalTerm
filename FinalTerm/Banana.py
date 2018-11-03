@@ -71,7 +71,7 @@ class IdleState:
         elif banana.stage == 5:
             r, g, b, a = banana.CrashImageStage5.getpixel((banana.x + 100, 800 - banana.y - 30))
 
-             
+
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             pass
 
