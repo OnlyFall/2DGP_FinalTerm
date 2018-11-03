@@ -42,13 +42,13 @@ class IdleState:
     def enter(banana, event):
         banana.timer = get_time() - 0.9
         if event == RIGHT_DOWN:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
         elif event == LEFT_DOWN:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
         elif event == RIGHT_UP:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
         elif event == LEFT_UP:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
 
 
     @staticmethod
@@ -60,8 +60,11 @@ class IdleState:
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
 
-        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
-        if (r, g, b) != (78, 201, 17) or (r, g, b) != (67, 119, 108) or (r, g, b) != (45, 132, 114) or (r, g, b) != (106, 150, 194) or (r, g, b) != (70, 106, 144) or (r, g, b) != (46, 79, 114) or (r, g, b) != (78, 163, 146):
+        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, 800 -  banana.y - 30))
+        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
+            pass
+
+        else:
             if banana.y > 90:
                  banana.add_event(DOWN)
 
@@ -82,16 +85,16 @@ class RunState:
     @staticmethod
     def enter(banana, event):
         if event == RIGHT_DOWN:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
 
         elif event == LEFT_DOWN:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
 
         elif event == RIGHT_UP:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
 
         elif event == LEFT_UP:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
 
         banana.dir = clamp(-1, banana.velocity, 1)
 
@@ -106,9 +109,12 @@ class RunState:
         banana.x += banana.velocity * game_framework.frame_time
         banana.x = clamp(25, banana.x, 1600 - 25)
 
-        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
-        if (r, g, b) != (78, 201, 17) or (r, g, b) != (67, 119, 108) or (r, g, b) != (45, 132, 114) or (r, g, b) != (106, 150, 194) or (r, g, b) != (70, 106, 144) or (r, g, b) != (46, 79, 114) or (r, g, b) != (78, 163, 146):
-           if banana.y > 90:
+        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, 800 - banana.y - 30))
+        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
+            pass
+
+        else:
+            if banana.y > 90:
                 banana.add_event(DOWN)
 
     @staticmethod
@@ -126,16 +132,16 @@ class JumpUpState:
     @staticmethod
     def enter(banana, event):
         if event == RIGHT_DOWN:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
 
         elif event == LEFT_DOWN:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
 
         elif event == RIGHT_UP:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
 
         elif event == LEFT_UP:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
 
         banana.dir = clamp(-1, banana.velocity, 1)
 
@@ -148,11 +154,11 @@ class JumpUpState:
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
         banana.x += banana.velocity * game_framework.frame_time
         if banana.dir == 1:
-            banana.jumpRange += 200 * game_framework.frame_time
-            banana.y += 200* game_framework.frame_time
+            banana.jumpRange += 200 * game_framework.frame_time * 2
+            banana.y += 200 * game_framework.frame_time * 2
         else:
-            banana.jumpRange += 200 * game_framework.frame_time
-            banana.y += 200 * game_framework.frame_time
+            banana.jumpRange += 200 * game_framework.frame_time * 2
+            banana.y += 200 * game_framework.frame_time * 2
 
         if banana.y > 750:
             banana.add_event(DOWN)
@@ -178,16 +184,16 @@ class JumpDownState:
     @staticmethod
     def enter(banana, event):
         if event == RIGHT_DOWN:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
 
         elif event == LEFT_DOWN:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
 
         elif event == RIGHT_UP:
-            banana.velocity -= RUN_SPEED_PPS
+            banana.velocity -= RUN_SPEED_PPS * 1.5
 
         elif event == LEFT_UP:
-            banana.velocity += RUN_SPEED_PPS
+            banana.velocity += RUN_SPEED_PPS * 1.5
 
         banana.dir = clamp(-1, banana.velocity, 1)
 
@@ -200,9 +206,9 @@ class JumpDownState:
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
         banana.x += banana.velocity * game_framework.frame_time
         if banana.dir == 1:
-            banana.y -= 200 * game_framework.frame_time
+            banana.y -= 200 * game_framework.frame_time * 2
         else:
-            banana.y -= 200 * game_framework.frame_time
+            banana.y -= 200 * game_framework.frame_time * 2
 
         banana.x = clamp(25, banana.x, 1600 - 25)
 
@@ -212,7 +218,7 @@ class JumpDownState:
             else:
                 banana.add_event(END_GOIDLE)
 
-        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, banana.y))
+        r, g, b, a = banana.CrashImage.getpixel((banana.x + 100, 800 - banana.y - 30))
         if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
             if banana.velocity > 0 or banana.velocity < 0:
                 banana.add_event(END_GORUN)
