@@ -69,16 +69,16 @@ def update():
         banana.StageUpdate(stage)
         StageCount = get_time()
 
-    if get_time() - shootingTime > 2:
+    if get_time() - shootingTime > 1:
         shootingTime = get_time()
 
         for i in range(10):
-            goX = math.cos(180 + 9 * i) * 400 + 1600
-            goY = math.sin(180 + 9 * i) * 400 + 800
-            lengthX = 1600 + (goX)
-            lengthY = 800 + (goY)
+            goX = math.cos((3.141592 / 180) * (i * 9) + 110) * 400 + 1580
+            goY = math.sin((3.141592 / 180) * (i * 9) + 110) * 400 + 750
+            lengthX = goX - 1600
+            lengthY = goY - 800
 
-            shoot = Shoot(1580, 750, -(lengthX / 2), -(lengthY / 2))
+            shoot = Shoot(1580, 750, (lengthX / 2), (lengthY / 2))
             game_world.add_object(shoot, 1)
 
 
