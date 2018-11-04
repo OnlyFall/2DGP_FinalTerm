@@ -62,7 +62,34 @@ def Pattern2():
     shootTime = (shootTime + 1) % 3
 
 def Pattern3():
-    pass
+    global shootTime
+
+    for i in range(16):
+        if shootTime == 0:
+            goX = (i + 1) * 100
+            goY = 0
+
+            lengthX = goX - (i + 1) * 100
+            lengthY = goY - 750
+
+            shoot = Shoot(goX, 750, (lengthX / 2), (lengthY / 2))
+            game_world.add_object(shoot, 2)
+
+        elif shootTime == 1:
+            goX = (i + 1) * 100 - 50
+            goY = 0
+
+            lengthX = goX - ((i + 1) * 100 - 50)
+            lengthY = goY - 750
+
+            shoot = Shoot(goX, 750, (lengthX / 2), (lengthY / 2))
+            game_world.add_object(shoot, 2)
+
+    for i in range(5):
+        pass
+
+    shootTime = (shootTime + 1) % 2
+
 
 def Pattern4():
     pass
