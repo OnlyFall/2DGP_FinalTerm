@@ -78,6 +78,8 @@ class IdleState:
         else:
             if banana.y > 90:
                  banana.add_event(DOWN)
+                 pass
+
 
 
     @staticmethod
@@ -266,10 +268,14 @@ class JumpDownState:
             banana.image.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
 
 next_state_table = {
-    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState, DOWN:JumpDownState},
-    RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: JumpUpState, DOWN:JumpDownState},
-    JumpUpState: {RIGHT_DOWN: JumpUpState, LEFT_DOWN: JumpUpState, RIGHT_UP: JumpUpState, LEFT_UP: JumpUpState, SPACE: JumpUpState, DOWN:JumpDownState},
-    JumpDownState: {END_IDLE: IdleState, END_RUN: RunState, RIGHT_DOWN: JumpDownState, LEFT_DOWN: JumpDownState, RIGHT_UP: JumpDownState, LEFT_UP: JumpDownState, SPACE: JumpDownState}
+    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState,
+                DOWN: JumpDownState, END_IDLE: IdleState, END_RUN: RunState},
+    RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: JumpUpState,
+               DOWN: JumpDownState, END_RUN: RunState, END_IDLE: IdleState},
+    JumpUpState: {RIGHT_DOWN: JumpUpState, LEFT_DOWN: JumpUpState, RIGHT_UP : JumpUpState, LEFT_UP: JumpUpState,
+                  SPACE: JumpUpState, DOWN: JumpDownState},
+    JumpDownState: {END_IDLE: IdleState, END_RUN: RunState, RIGHT_DOWN: JumpDownState, LEFT_DOWN: JumpDownState,
+                    RIGHT_UP: JumpDownState, LEFT_UP: JumpDownState, SPACE: JumpDownState, DOWN: JumpDownState}
 }
 
 class Banana:
