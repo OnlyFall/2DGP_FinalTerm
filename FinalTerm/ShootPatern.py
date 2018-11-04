@@ -86,7 +86,14 @@ def Pattern3():
             game_world.add_object(shoot, 2)
 
     for i in range(5):
-        pass
+        goX = 0
+        goY = i * 160
+
+        lengthX = goX - 1580
+        lengthY = goY - (i * 160)
+
+        shoot = Shoot(goX, 750, (lengthX / 2), (lengthY / 2))
+        game_world.add_object(shoot, 2)
 
     shootTime = (shootTime + 1) % 2
 
