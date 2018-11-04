@@ -24,5 +24,5 @@ class Shoot:
         self.x += self.distanceX * game_framework.frame_time
         self.y += self.distanceY * game_framework.frame_time
 
-        if self.x < 5 or self.x > 1600 - 5 or self.y < 5 or self.y >  795:
+        if self.x < 5 or self.x > 1600 - 5 or self.y < 5 or self.y > 795:
             game_world.remove_object(self)
