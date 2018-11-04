@@ -13,6 +13,7 @@ def Pattern1():
         else:
             goX = math.cos((3.141592 / 180) * (i * 9 + 176)) * 400 + 1580
             goY = math.sin((3.141592 / 180) * (i * 9 + 176)) * 400 + 750
+
         lengthX = goX - 1600
         lengthY = goY - 800
 
@@ -20,7 +21,16 @@ def Pattern1():
         game_world.add_object(shoot, 2)
 
 def Pattern2():
-    pass
+
+    for i in range(11):
+        goX = math.cos((3.141592 / 180) * (i * 9 + 225)) * 400 + 800
+        goY = math.sin((3.141592 / 180) * (i * 9 + 225)) * 400 + 750
+
+        lengthX = goX - 800
+        lengthY = goY - 750
+
+        shoot = Shoot(800, 750, (lengthX / 2), (lengthY / 2))
+        game_world.add_object(shoot, 2)
 
 def Pattern3():
     pass

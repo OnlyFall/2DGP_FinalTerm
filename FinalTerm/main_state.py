@@ -70,10 +70,20 @@ def update():
         banana.StageUpdate(stage)
         StageCount = get_time()
 
+    stage = 2
     if get_time() - shootingTime > 1:
         shootingTime = get_time()
         if stage == 1:
             ShootPatern.Pattern1()
+        elif stage == 2:
+            ShootPatern.Pattern2()
+        elif stage == 3:
+            ShootPatern.Pattern3()
+        elif stage == 4:
+            ShootPatern.Pattern4()
+        elif stage == 5:
+            ShootPatern.Pattern5()
+
 
 
     for game_object in game_world.all_objects():
