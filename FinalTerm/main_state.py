@@ -87,7 +87,12 @@ def update():
         elif stage == 5:
             ShootPatern.Pattern5()
 
-
+    for game_object in game_world.check_object(2):
+        if game_world.collide(game_object, banana) == True:
+            if hart < 5:
+                hart += 1
+            game_world.remove_object(game_object)
+            health.crashCount(hart)
 
 
 
