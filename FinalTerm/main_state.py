@@ -6,6 +6,7 @@ from Shoot import Shoot
 from pico2d import *
 import game_framework
 import game_world
+import ShootPatern
 
 from Health import Health
 from Banana import Banana
@@ -71,20 +72,8 @@ def update():
 
     if get_time() - shootingTime > 1:
         shootingTime = get_time()
-        switch = random.randint(1,2)
-
-        for i in range(10):
-            if switch == 1:
-                goX = math.cos((3.141592 / 180) * (i * 9 + 180)) * 400 + 1580
-                goY = math.sin((3.141592 / 180) * (i * 9 + 180)) * 400 + 750
-            else:
-                goX = math.cos((3.141592 / 180) * (i * 9 + 176 )) * 400 + 1580
-                goY = math.sin((3.141592 / 180) * (i * 9 + 176)) * 400 + 750
-            lengthX = goX - 1600
-            lengthY = goY - 800
-
-            shoot = Shoot(1580, 750, (lengthX / 2), (lengthY / 2))
-            game_world.add_object(shoot, 2)
+        if stage == 1:
+            ShootPatern.Pattern1()
 
 
     for game_object in game_world.all_objects():
