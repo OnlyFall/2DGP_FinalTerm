@@ -41,6 +41,7 @@ def check_object(layer):
     for i in objects[layer]:
         yield i
 
+
 def all_objects():
     for i in range(len(objects)):
         for o in objects[i]:

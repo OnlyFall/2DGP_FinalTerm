@@ -10,13 +10,13 @@ def Pattern1():
     global shootTime
     switch = random.randint(1, 2)
 
-    for i in range(10):
+    for i in range(5):
         if switch == 1:
-            goX = math.cos((3.141592 / 180) * (i * 9 + 180)) * 400 + 1580
-            goY = math.sin((3.141592 / 180) * (i * 9 + 180)) * 400 + 750
+            goX = math.cos((3.141592 / 180) * (i * 18 + 180)) * 400 + 1580
+            goY = math.sin((3.141592 / 180) * (i * 18 + 180)) * 400 + 750
         else:
-            goX = math.cos((3.141592 / 180) * (i * 9 + 176)) * 400 + 1580
-            goY = math.sin((3.141592 / 180) * (i * 9 + 176)) * 400 + 750
+            goX = math.cos((3.141592 / 180) * (i * 18 + 170)) * 400 + 1580
+            goY = math.sin((3.141592 / 180) * (i * 18 + 170)) * 400 + 750
 
         lengthX = goX - 1600
         lengthY = goY - 800
