@@ -18,7 +18,9 @@ class Shoot:
         self.x, self.y, self.distanceX, self.distanceY = x, y, distanceX, distanceY
 
     def draw(self):
-        self.image.draw(self.x, self.y)
+        #self.image.draw(self.x, self.y)
+        self.image.clip_draw(0, 0, 50, 50, self.x, self.y, 25, 25)
+
 
     def update(self):
         self.x += self.distanceX * game_framework.frame_time

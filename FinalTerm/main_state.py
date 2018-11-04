@@ -70,7 +70,6 @@ def update():
         banana.StageUpdate(stage)
         StageCount = get_time()
 
-    stage = 2
     if get_time() - shootingTime > 1:
         shootingTime = get_time()
         if stage == 1:
