@@ -28,9 +28,9 @@ def Pattern2():
     global shootTime
 
     if shootTime == 0:
-        for i in range(11):
-            goX = math.cos((3.141592 / 180) * (i * 9 + 225)) * 400 + 800
-            goY = math.sin((3.141592 / 180) * (i * 9 + 225)) * 400 + 750
+        for i in range(6):
+            goX = math.cos((3.141592 / 180) * (i * 18 + 225)) * 400 + 800
+            goY = math.sin((3.141592 / 180) * (i * 18 + 225)) * 400 + 750
 
             lengthX = goX - 800
             lengthY = goY - 750
