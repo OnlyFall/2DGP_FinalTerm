@@ -3,7 +3,10 @@ import game_world
 from Shoot import Shoot
 import random
 
+shootTime = 0
+
 def Pattern1():
+    global shootTime
     switch = random.randint(1, 2)
 
     for i in range(10):
@@ -21,16 +24,42 @@ def Pattern1():
         game_world.add_object(shoot, 2)
 
 def Pattern2():
+    global shootTime
 
-    for i in range(11):
-        goX = math.cos((3.141592 / 180) * (i * 9 + 225)) * 400 + 800
-        goY = math.sin((3.141592 / 180) * (i * 9 + 225)) * 400 + 750
+    if shootTime == 0:
+        for i in range(11):
+            goX = math.cos((3.141592 / 180) * (i * 9 + 225)) * 400 + 800
+            goY = math.sin((3.141592 / 180) * (i * 9 + 225)) * 400 + 750
 
-        lengthX = goX - 800
-        lengthY = goY - 750
+            lengthX = goX - 800
+            lengthY = goY - 750
 
-        shoot = Shoot(800, 750, (lengthX / 2), (lengthY / 2))
-        game_world.add_object(shoot, 2)
+            shoot = Shoot(800, 750, (lengthX / 2), (lengthY / 2))
+            game_world.add_object(shoot, 2)
+
+    elif shootTime == 1:
+        for i in range(11):
+            goX = math.cos((3.141592 / 180) * (i * 20 + 90)) * 400 + 1580
+            goY = math.sin((3.141592 / 180) * (i * 20 + 90)) * 400 + 300
+
+            lengthX = goX - 1580
+            lengthY = goY - 300
+
+            shoot = Shoot(1580, 300, (lengthX / 2), (lengthY / 2))
+            game_world.add_object(shoot, 2)
+
+    elif shootTime == 2:
+        for i in range(11):
+            goX = math.cos((3.141592 / 180) * (i * 20 + 270)) * 400 + 20
+            goY = math.sin((3.141592 / 180) * (i * 20 + 270)) * 400 + 300
+
+            lengthX = goX - 20
+            lengthY = goY - 300
+
+            shoot = Shoot(30, 300, (lengthX / 2), (lengthY / 2))
+            game_world.add_object(shoot, 2)
+
+    shootTime = (shootTime + 1) % 3
 
 def Pattern3():
     pass
