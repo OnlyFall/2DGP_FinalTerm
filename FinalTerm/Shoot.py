@@ -20,7 +20,10 @@ class Shoot:
     def draw(self):
         #self.image.draw(self.x, self.y)
         self.image.clip_draw(0, 0, 50, 50, self.x, self.y, 25, 25)
+        draw_rectangle(*self.get_bb())
 
+    def get_bb(self):
+        return self.x - 10, self.y - 10, self.x + 8, self.y + 8
 
     def update(self):
         self.x += self.distanceX * game_framework.frame_time

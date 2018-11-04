@@ -309,6 +309,8 @@ class Banana:
     def StageUpdate(self, stage):
         self.stage = stage
 
+
+
     def update(self):
         self.cur_state.do(self)
         if len(self.event_que) > 0:

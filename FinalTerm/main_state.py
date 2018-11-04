@@ -14,6 +14,7 @@ from background import Back
 
 name = "MainState"
 
+hart = 0
 banana = None
 back = None
 Die = None
@@ -28,6 +29,8 @@ def enter():
     global stage
     global StageCount
     global shootingTime
+    global hart
+    hart = 0
     stageCount = get_time()
     shootingTime = stageCount
     back = Back(stage)
@@ -50,6 +53,7 @@ def resume():
     pass
 
 
+
 def handle_events():
     events = get_events()
     for event in events:
@@ -62,7 +66,7 @@ def handle_events():
 
 
 def update():
-    global StageCount, back, shootingTime
+    global StageCount, back, shootingTime, hart
     global stage
     if get_time() - StageCount > 10:
         stage = random.randint(1, 5)
@@ -82,6 +86,9 @@ def update():
             ShootPatern.Pattern4()
         elif stage == 5:
             ShootPatern.Pattern5()
+
+
+
 
 
 

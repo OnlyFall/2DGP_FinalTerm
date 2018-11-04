@@ -4,6 +4,7 @@ from Shoot import Shoot
 import random
 
 shootTime = 0
+Pattern3Switch = 0
 
 def Pattern1():
     global shootTime
@@ -62,7 +63,7 @@ def Pattern2():
     shootTime = (shootTime + 1) % 3
 
 def Pattern3():
-    global shootTime
+    global shootTime, Pattern3Switch
 
     for i in range(16):
         if shootTime == 0:
@@ -85,15 +86,29 @@ def Pattern3():
             shoot = Shoot(goX, 750, (lengthX / 2), (lengthY / 2))
             game_world.add_object(shoot, 2)
 
-    for i in range(5):
-        goX = 0
-        goY = i * 160
+    if shootTime == 1:
+        Pattern3Switch = (Pattern3Switch + 1) % 2
+        for i in range(3):
+            if Pattern3Switch == 0:
+                goX = 0
+                goY = (i - 1) * 300 + 50
 
-        lengthX = goX - 1580
-        lengthY = goY - (i * 160)
+                lengthX = goX - 1580
+                lengthY = goY - (i * 200)
 
-        shoot = Shoot(goX, 750, (lengthX / 2), (lengthY / 2))
-        game_world.add_object(shoot, 2)
+                shoot = Shoot(1580, goY, (lengthX / 2), (lengthY / 2))
+                game_world.add_object(shoot, 2)
+
+            else:
+                goX = 1580
+                goY = i * 300
+
+                lengthX = goX - 20
+                lengthY = goY - (i * 300)
+
+                shoot = Shoot(20, goY, (lengthX / 2), (lengthY / 2))
+                game_world.add_object(shoot, 2)
+
 
     shootTime = (shootTime + 1) % 2
 
