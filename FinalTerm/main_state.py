@@ -1,4 +1,5 @@
 import random
+import title_state
 import math
 import json
 import os
@@ -69,7 +70,7 @@ def update():
     global StageCount, back, shootingTime, hart
     global stage
     if get_time() - StageCount > 10:
-        stage = random.randint(1, 5)
+        stage = random.randint(1, 3)
         back.stageUpdate(stage)
         banana.StageUpdate(stage)
         StageCount = get_time()
@@ -91,6 +92,7 @@ def update():
         if game_world.collide(game_object, banana) == True:
             if hart < 5:
                 hart += 1
+            #여기에 체력 다 사라지면 결과창으로 넘어감
             game_world.remove_object(game_object)
             health.crashCount(hart)
 

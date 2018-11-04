@@ -39,9 +39,9 @@ def Pattern2():
             game_world.add_object(shoot, 2)
 
     elif shootTime == 1:
-        for i in range(11):
-            goX = math.cos((3.141592 / 180) * (i * 20 + 90)) * 400 + 1580
-            goY = math.sin((3.141592 / 180) * (i * 20 + 90)) * 400 + 300
+        for i in range(6):
+            goX = math.cos((3.141592 / 180) * (i * 20 + 135)) * 400 + 1580
+            goY = math.sin((3.141592 / 180) * (i * 20 + 135)) * 400 + 300
 
             lengthX = goX - 1580
             lengthY = goY - 300
@@ -50,9 +50,9 @@ def Pattern2():
             game_world.add_object(shoot, 2)
 
     elif shootTime == 2:
-        for i in range(11):
-            goX = math.cos((3.141592 / 180) * (i * 20 + 270)) * 400 + 20
-            goY = math.sin((3.141592 / 180) * (i * 20 + 270)) * 400 + 300
+        for i in range(6):
+            goX = math.cos((3.141592 / 180) * (i * 20 + 315)) * 400 + 20
+            goY = math.sin((3.141592 / 180) * (i * 20 + 315)) * 400 + 300
 
             lengthX = goX - 20
             lengthY = goY - 300
