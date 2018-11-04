@@ -309,6 +309,8 @@ class Banana:
     def StageUpdate(self, stage):
         self.stage = stage
 
+    def get_bb(self):
+        return self.x - 30, self.y - 50, self.x + 25, self.y + 50
 
 
     def update(self):
