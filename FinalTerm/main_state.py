@@ -34,6 +34,7 @@ def enter():
     hart = 0
     stageCount = get_time()
     shootingTime = stageCount
+    stage = 3
     back = Back(stage)
     health = Health()
     banana = Banana(stage)
