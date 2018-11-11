@@ -2,20 +2,20 @@ from pico2d import *
 
 class Back:
     def __init__(self, stage):
-        self.stage1 = load_image('BG\\Stage1Map1.bmp')
-        self.stage2 = load_image('BG\\Stage1Map1.bmp')
-        self.stage3 = load_image('BG\\Stage1Map1.bmp')
-        self.stage4 = load_image('BG\\Stage1Map1.bmp')
-        self.stage5 = load_image('BG\\Stage1Map1.bmp')
+        self.stage1 = load_image('Resource\\BG\\Stage1Map1.bmp')
+        self.stage2 = load_image('Resource\\BG\\Stage1Map1.bmp')
+        self.stage3 = load_image('Resource\\BG\\Stage1Map1.bmp')
+        self.stage4 = load_image('Resource\\BG\\Stage1Map1.bmp')
+        self.stage5 = load_image('Resource\\BG\\Stage1Map1.bmp')
 
-        self.step1 = load_image('STEP\\PT_0005.png')
-        self.step2 = load_image('STEP\\PT_0004.png')
-        self.step3 = load_image('STEP\\PT_0003.png')
-        self.step4 = load_image('STEP\\PT_0002.png')
-        self.step5 = load_image('STEP\\PT_0001.png')
+        self.step1 = load_image('Resource\\STEP\\PT_0005.png')
+        self.step2 = load_image('Resource\\STEP\\PT_0004.png')
+        self.step3 = load_image('Resource\\STEP\\PT_0003.png')
+        self.step4 = load_image('Resource\\STEP\\PT_0002.png')
+        self.step5 = load_image('Resource\\STEP\\PT_0001.png')
         self.stage = stage
 
-        self.volume = load_music('IngameBGM\\Town8.mp3')
+        self.volume = load_music('Resource\\IngameBGM\\Town8.mp3')
         self.volume.set_volume(40)
         self.volume.play(stage)
     def update(self):

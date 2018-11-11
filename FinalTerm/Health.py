@@ -3,8 +3,8 @@ from pico2d import *
 
 class Health:
     def __init__(self):
-        self.FullHeart = load_image('UI\\HEART\\Heart.png')
-        self.CrashHeart = load_image('UI\\HEART\\DieHeart.png')
+        self.FullHeart = load_image('Resource\\UI\\HEART\\Heart.png')
+        self.CrashHeart = load_image('Resource\\UI\\HEART\\DieHeart.png')
         self.x = 50
         self.y = 750
         self.crash = 0

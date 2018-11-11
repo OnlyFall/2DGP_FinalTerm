@@ -14,7 +14,7 @@ class Shoot:
 
     def __init__(self, x, y, distanceX, distanceY):
         if Shoot.image == None:
-            Shoot.image = load_image('ShootingImage\\먼지.png')
+            Shoot.image = load_image('Resource\\ShootingImage\\먼지.png')
         self.x, self.y, self.distanceX, self.distanceY = x, y, distanceX, distanceY
 
     def draw(self):

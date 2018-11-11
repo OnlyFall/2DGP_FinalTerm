@@ -288,18 +288,18 @@ class Banana:
         self.rad = 0
         self.standup = 0
         # Boy is only once created, so instance image loading is fine
-        self.image = load_image('character\\Banana\\totalBanana.png')
+        self.image = load_image('Resource\\character\\Banana\\totalBanana.png')
         self.dir = 1
         self.velocity = 0
         self.frame = 0
         self.event_que = []
         self.cur_state = IdleState
         self.stage = stage
-        self.CrashImageStage1 = PIL.Image.open("STEP\\PT_0005.png")
-        self.CrashImageStage2 = PIL.Image.open("STEP\\PT_0004.png")
-        self.CrashImageStage3 = PIL.Image.open("STEP\\PT_0003.png")
-        self.CrashImageStage4 = PIL.Image.open("STEP\\PT_0002.png")
-        self.CrashImageStage5 = PIL.Image.open("STEP\\PT_0001.png")
+        self.CrashImageStage1 = PIL.Image.open("Resource\\STEP\\PT_0005.png")
+        self.CrashImageStage2 = PIL.Image.open("Resource\\STEP\\PT_0004.png")
+        self.CrashImageStage3 = PIL.Image.open("Resource\\STEP\\PT_0003.png")
+        self.CrashImageStage4 = PIL.Image.open("Resource\\STEP\\PT_0002.png")
+        self.CrashImageStage5 = PIL.Image.open("Resource\\STEP\\PT_0001.png")
         self.cur_state.enter(self, None)
 
 

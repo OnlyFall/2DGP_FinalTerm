@@ -14,9 +14,9 @@ def enter():
     global BackgroundImage
     global START
     global END
-    BackgroundImage = load_image("UI\\BG.png")
-    START = load_image('UI\\start.png')
-    END = load_image('UI\\ENDpng.png')
+    BackgroundImage = load_image("Resource\\UI\\BG.png")
+    START = load_image('Resource\\UI\\start.png')
+    END = load_image('Resource\\UI\\ENDpng.png')
 
 def exit():
     global BackgroundImage
