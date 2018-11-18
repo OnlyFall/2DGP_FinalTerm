@@ -144,10 +144,10 @@ class RunState:
     def draw(banana):
         if banana.dir == 1:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
+            banana.image.clip_draw(int(banana.frame) * 150, 450, 150, 150, banana.x, banana.y)
         else:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
+            banana.image.clip_draw(int(banana.frame) * 150, 300, 150, 150, banana.x, banana.y)
 
 
 class JumpUpState:
@@ -196,10 +196,10 @@ class JumpUpState:
     def draw(banana):
         if banana.dir == 1:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
+            banana.image.clip_draw(int(banana.frame) * 150, 450, 150, 150, banana.x, banana.y)
         else:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
+            banana.image.clip_draw(int(banana.frame) * 150, 300, 150, 150, banana.x, banana.y)
 
 
 class JumpDownState:
@@ -262,10 +262,10 @@ class JumpDownState:
     def draw(banana):
         if banana.dir == 1:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
+            banana.image.clip_draw(int(banana.frame) * 150, 450, 150, 150, banana.x, banana.y)
         else:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
+            banana.image.clip_draw(int(banana.frame) * 150, 300, 150, 150, banana.x, banana.y)
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState,
