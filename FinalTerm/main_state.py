@@ -8,6 +8,7 @@ from pico2d import *
 import game_framework
 import game_world
 import ShootPatern
+import ending_state
 
 from Health import Health
 from Banana import Banana
@@ -21,7 +22,7 @@ back = None
 Die = None
 health = None
 StageCount = 0
-shootingTime = 0
+Launchlatency = 0
 stage = 1
 def enter():
     global banana, back
@@ -68,7 +69,7 @@ def handle_events():
 
 
 def update():
-    global StageCount, back, shootingTime, hart
+    global StageCount, back, Launchlatency, hart
     global stage
     if get_time() - StageCount > 10:
         stage = random.randint(1, 3)
@@ -76,8 +77,8 @@ def update():
         banana.StageUpdate(stage)
         StageCount = get_time()
 
-    if get_time() - shootingTime > 1:
-        shootingTime = get_time()
+    if get_time() - Launchlatency > 1:
+        Launchlatency = get_time()
         if stage == 1:
             ShootPatern.Pattern1()
         elif stage == 2:
@@ -93,7 +94,9 @@ def update():
         if game_world.collide(game_object, banana) == True:
             if hart < 5:
                 hart += 1
-            #여기에 체력 다 사라지면 결과창으로 넘어감
+            else:
+                game_framework.change_state(ending_state) #여기에 체력 다 사라지면 결과창으로 넘어감
+
             game_world.remove_object(game_object)
             health.crashCount(hart)
 
