@@ -92,7 +92,7 @@ def update():
 
     for game_object in game_world.check_object(2):
         if game_world.collide(game_object, banana) == True:
-            if hart < 5:
+            if hart < 4:
                 hart += 1
             else:
                 game_framework.change_state(ending_state) #여기에 체력 다 사라지면 결과창으로 넘어감
