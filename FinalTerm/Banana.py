@@ -54,6 +54,7 @@ class IdleState:
     @staticmethod
     def exit(banana, event):
         if event == SPACE:
+            banana.jumpSound.play()
             banana.jumpRange = 0
 
     @staticmethod
@@ -113,6 +114,7 @@ class RunState:
     @staticmethod
     def exit(banana, event):
         if event == SPACE:
+            banana.jumpSound.play()
             banana.jumpRange = 0
 
     @staticmethod
@@ -154,6 +156,7 @@ class JumpUpState:
 
     @staticmethod
     def enter(banana, event):
+
         if event == RIGHT_DOWN:
             banana.velocity += RUN_SPEED_PPS * 1.5
 
@@ -301,6 +304,7 @@ class Banana:
         self.CrashImageStage4 = PIL.Image.open("Resource\\STEP\\PT_0002.png")
         self.CrashImageStage5 = PIL.Image.open("Resource\\STEP\\PT_0001.png")
         self.cur_state.enter(self, None)
+        self.jumpSound = load_wav("Resource\\Sound\\Jump.wav")
 
 
     def add_event(self, event):
