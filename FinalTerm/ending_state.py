@@ -17,6 +17,7 @@ name = "EndingState"
 
 
 def enter():
+    #뒷배경 로드(BG폴더에서 할 예정)
     pass
 
 
