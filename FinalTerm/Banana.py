@@ -14,11 +14,15 @@ RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 
-# Boy Action Speed
-# fill expressions correctly
+#바나나의 기본 애니메이션 동작 속도
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 0.9 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 6
+
+#바나나 점프시에 따로 설정된 타임들
+TIME_PER_ACTION_JUMP = 0.5
+ACTION_PER_TIME_JUMP = 0.9 / TIME_PER_ACTION
+FRAMES_PER_ACTION_JUMP = 4
 
 
 
@@ -177,7 +181,7 @@ class JumpUpState:
 
     @staticmethod
     def do(banana):
-        banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
+        banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         banana.x += banana.velocity * game_framework.frame_time
         if banana.dir == 1:
             banana.jumpRange += 200 * game_framework.frame_time * 2
@@ -199,10 +203,10 @@ class JumpUpState:
     def draw(banana):
         if banana.dir == 1:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 450, 150, 150, banana.x, banana.y)
+            banana.JumpImage.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
         else:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 300, 150, 150, banana.x, banana.y)
+            banana.JumpImage.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
 
 
 class JumpDownState:
