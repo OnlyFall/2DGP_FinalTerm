@@ -2,8 +2,9 @@ from pico2d import *
 
 class Back:
     def __init__(self, stage):
+        self.change = False
         self.stage1 = load_image('Resource\\BG\\Stage1Map1.bmp')
-        self.stage2 = load_image('Resource\\BG\\Stage1Map1.bmp')
+        self.stage2 = load_image('Resource\\BG\\Stage1Map2.bmp')
         self.stage3 = load_image('Resource\\BG\\Stage1Map1.bmp')
         self.stage4 = load_image('Resource\\BG\\Stage1Map1.bmp')
         self.stage5 = load_image('Resource\\BG\\Stage1Map1.bmp')
@@ -20,6 +21,9 @@ class Back:
         self.volume.play(stage)
     def update(self):
         pass
+
+    def MapChangeButton(self):
+        self.change = True
 
     def stageUpdate(self, stage):
         self.stage = stage
