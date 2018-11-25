@@ -229,7 +229,7 @@ class JumpDownState:
 
     @staticmethod
     def do(banana):
-        banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
+        banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         banana.x += banana.velocity * game_framework.frame_time
         if banana.dir == 1:
             banana.y -= 200 * game_framework.frame_time * 2
@@ -267,10 +267,10 @@ class JumpDownState:
     def draw(banana):
         if banana.dir == 1:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 450, 150, 150, banana.x, banana.y)
+            banana.LandingImage.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
         else:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 300, 150, 150, banana.x, banana.y)
+            banana.LandingImage.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState,
@@ -294,18 +294,23 @@ class Banana:
         self.standup = 0
         # Boy is only once created, so instance image loading is fine
         self.image = load_image('Resource\\character\\Banana\\totalBanana.png')
+        self.LandingImage = load_image('Resource\\character\\Banana\\LandingBanana.png')
+        self.JumpImage = load_image('Resource\\character\\Banana\\JumpBanana.png')
+
         self.dir = 1
         self.velocity = 0
         self.frame = 0
         self.event_que = []
         self.cur_state = IdleState
         self.stage = stage
+
         self.CrashImageStage1 = PIL.Image.open("Resource\\STEP\\PT_0005.png")
         self.CrashImageStage2 = PIL.Image.open("Resource\\STEP\\PT_0004.png")
         self.CrashImageStage3 = PIL.Image.open("Resource\\STEP\\PT_0003.png")
         self.CrashImageStage4 = PIL.Image.open("Resource\\STEP\\PT_0002.png")
         self.CrashImageStage5 = PIL.Image.open("Resource\\STEP\\PT_0001.png")
         self.cur_state.enter(self, None)
+
         self.jumpSound = load_wav("Resource\\Sound\\Jump.wav")
         self.landingSound = load_wav("Resource\\Sound\\Down.wav")
 
