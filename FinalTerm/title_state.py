@@ -7,6 +7,7 @@ name = "TitleState"
 BackgroundImage = None
 START = None
 END = None
+sound = None
 startSelect = 0
 endSelect = 1
 
@@ -14,14 +15,20 @@ def enter():
     global BackgroundImage
     global START
     global END
+    global sound
     BackgroundImage = load_image("Resource\\UI\\BG.png")
     START = load_image('Resource\\UI\\start.png')
     END = load_image('Resource\\UI\\ENDpng.png')
+    sound = load_music('Resource\\IngameBGM\\On the Long journey.mp3')
+    sound.set_volume(20)
+    sound.play()
+
 
 def exit():
     global BackgroundImage
     global START
     global END
+    global sound
     del(BackgroundImage)
     del(START)
     del(END)

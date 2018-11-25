@@ -18,7 +18,7 @@ class Back:
 
         self.volume = load_music('Resource\\IngameBGM\\Town8.mp3')
         self.volume.set_volume(40)
-        self.volume.play(stage)
+        self.volume.play()
     def update(self):
         pass
 
