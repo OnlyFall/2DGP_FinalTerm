@@ -15,8 +15,10 @@ from Banana import Banana
 from background import Back
 
 name = "MainState"
-
+#사용자 점수, 목숨
+userScore = 0
 hart = 0
+
 banana = None
 back = None
 Die = None
@@ -32,7 +34,10 @@ def enter():
     global StageCount
     global shootingTime
     global hart
+    global userScore
+
     hart = 0
+    userScore = 0
     stageCount = get_time()
     shootingTime = stageCount
     stage = 3
