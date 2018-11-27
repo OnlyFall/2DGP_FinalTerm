@@ -100,6 +100,7 @@ def update():
             if hart < 4:
                 hart += 1
             else:
+                back.endMusic()
                 game_framework.change_state(ending_state) #여기에 체력 다 사라지면 결과창으로 넘어감
 
             game_world.remove_object(game_object)

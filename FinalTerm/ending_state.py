@@ -15,14 +15,19 @@ from background import Back
 
 name = "EndingState"
 
+BackgroundImage = None
 
 def enter():
     #뒷배경 로드(BG폴더에서 할 예정)
+    global BackgroundImage
+    BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
     pass
 
 
 
 def exit():
+    global BackgroundImage
+    del(BackgroundImage)
     pass
 
 def pause():
@@ -44,13 +49,17 @@ def handle_events():
 
 
 def update():
+
     pass
 
 
 
-
+font = None
 def draw():
-    pass
+    #font = load_font()
+    clear_canvas()
+    BackgroundImage.draw(800, 400, 1600, 800)
+    update_canvas()
 
 
 

@@ -22,6 +22,10 @@ class Back:
     def update(self):
         pass
 
+    def endMusic(self):
+        self.volume.stop()
+        del(self.volume)
+
     def MapChangeButton(self):
         self.change = True
 
