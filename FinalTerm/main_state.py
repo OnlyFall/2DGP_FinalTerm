@@ -113,9 +113,11 @@ def update():
         game_object.update()
 
 
-
+font = None
 
 def draw():
+    global font
+    
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()

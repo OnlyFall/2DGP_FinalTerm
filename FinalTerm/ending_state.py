@@ -10,19 +10,21 @@ import game_world
 import ShootPatern
 
 from Health import Health
-from Banana import Banana
+from titleBanana import Banana
 from background import Back
 
 name = "EndingState"
 
 BackgroundImage = None
+banana = None
 
 def enter():
     #뒷배경 로드(BG폴더에서 할 예정)
     global BackgroundImage
+    global banana
+    banana = Banana()
     BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
-    pass
-
+    game_world.add_object(banana, 0)
 
 
 def exit():
@@ -52,8 +54,9 @@ def handle_events():
 
 
 def update():
+    for game_object in game_world.all_objects():
+        game_object.update()
 
-    pass
 
 
 
@@ -62,6 +65,8 @@ def draw():
     #font = load_font()
     clear_canvas()
     BackgroundImage.draw(800, 400, 1600, 800)
+    for game_object in game_world.all_objects():
+        game_object.draw()
     update_canvas()
 
 
