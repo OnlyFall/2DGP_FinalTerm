@@ -1,7 +1,7 @@
 import game_framework
 import main_state
 from pico2d import *
-
+from titleBanana import Banana
 
 name = "TitleState"
 BackgroundImage = None
@@ -22,7 +22,7 @@ def enter():
     BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
     START = load_image('Resource\\UI\\start.png')
     END = load_image('Resource\\UI\\ENDpng.png')
-    banana = load_image('Resource\\character\\Banana\\sittingBanana.png')
+    banana = Banana()
     sound = load_music('Resource\\IngameBGM\\On the Long journey.mp3')
     sound.set_volume(20)
     sound.play()
@@ -82,7 +82,8 @@ def draw():
 
 
 def update():
-    pass
+    global frame
+    frame = (frame + 1) % 4
 
 
 def pause():
