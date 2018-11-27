@@ -75,7 +75,7 @@ def draw():
         game_object.draw()
 
     font.draw(800, 400, "Score!!!!!!!", (255, 255, 255))
-    font.draw(800, 350, score, (255, 255, 255))
+    font.draw(800, 350, str(score), (255, 255, 255))
     update_canvas()
 
 

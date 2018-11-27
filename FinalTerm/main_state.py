@@ -76,6 +76,7 @@ def handle_events():
 def update():
     global StageCount, back, Launchlatency, hart
     global stage
+    global userScore
     if get_time() - StageCount > 10:
         stage = random.randint(1, 3)
         back.stageUpdate(stage)
@@ -89,24 +90,25 @@ def update():
         elif stage == 2:
             ShootPatern.Pattern2()
         elif stage == 3:
-            ShootPatern.Pattern3()
+            ShootPatern.Pattern3( )
         elif stage == 4:
             ShootPatern.Pattern4()
         elif stage == 5:
             ShootPatern.Pattern5()
 
     for game_object in game_world.check_object(2):
-        if game_world.collide(game_object, banana) == True:
+        if game_world.collide(game_object, banana):
             if hart < 4:
                 hart += 1
             else:
                 back.endMusic()
+                ending_state.loadScore(userScore)
                 game_framework.change_state(ending_state) #여기에 체력 다 사라지면 결과창으로 넘어감
 
             game_world.remove_object(game_object)
             health.crashCount(hart)
-
-
+        else:
+            userScore += 10
 
 
     for game_object in game_world.all_objects():
