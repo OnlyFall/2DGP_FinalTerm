@@ -16,7 +16,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 #바나나의 기본 애니메이션 동작 속도
 TIME_PER_ACTION = 0.5
-ACTION_PER_TIME = 0.9 / TIME_PER_ACTION
+ACTION_PER_TIME = 0.3 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 6
 
 
@@ -26,7 +26,7 @@ class IdleState:
 
     @staticmethod
     def enter(banana, event):
-       pass
+       banana.frame = 0
 
 
     @staticmethod
@@ -39,20 +39,15 @@ class IdleState:
 
     @staticmethod
     def draw(banana):
-        if banana.dir == 1:
             banana.image.opacify(1)
-            banana.image.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
+            banana.image.clip_draw(int(banana.frame) * 150, 0, 150, 150, 1300, 150)
 
 
 class Banana:
 
-    def __init__(self, stage):
+    def __init__(self):
         self.x, self.y = 1600 // 2, 90
-        self.jumpRange = 0
         self.opacifyValue = 1
-        self.GhostX, self.GhostY = 0, 0
-        self.rad = 0
-        self.standup = 0
         # Boy is only once created, so instance image loading is fine
         self.image = load_image('Resource\\character\\Banana\\sittingBanana.png')
         self.dir = 1
@@ -64,8 +59,6 @@ class Banana:
     def add_event(self, event):
         self.event_que.insert(0, event)
 
-    def StageUpdate(self, stage):
-        pass
 
     def get_bb(self):
         return self.x - 30, self.y - 50, self.x + 25, self.y + 50

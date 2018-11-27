@@ -2,6 +2,7 @@ import game_framework
 import main_state
 from pico2d import *
 from titleBanana import Banana
+import game_world
 
 name = "TitleState"
 BackgroundImage = None
@@ -23,6 +24,7 @@ def enter():
     START = load_image('Resource\\UI\\start.png')
     END = load_image('Resource\\UI\\ENDpng.png')
     banana = Banana()
+    game_world.add_object(banana, 0)
     sound = load_music('Resource\\IngameBGM\\On the Long journey.mp3')
     sound.set_volume(20)
     sound.play()
@@ -68,22 +70,24 @@ def handle_events():
                 game_framework.change_state(main_state)
 
 
-frame = 0
 def draw():
     global startSelect
     global endSelect
     global frame
     clear_canvas()
     BackgroundImage.draw(800, 400, 1600, 800)
-    banana.clip_draw(frame * 150, 0, 150, 150, 1200, 190)
     START.clip_draw(startSelect * 129, 0, 129, 25, 800, 300)
     END.clip_draw(0, endSelect * 17, 31, 17, 800, 250, 60, 20)
+
+    for game_object in game_world.all_objects():
+        game_object.draw()
+
     update_canvas()
 
 
 def update():
-    global frame
-    frame = (frame + 1) % 4
+    for game_object in game_world.all_objects():
+        game_object.update()
 
 
 def pause():
