@@ -10,15 +10,19 @@ END = None
 sound = None
 startSelect = 0
 endSelect = 1
+banana = None
 
 def enter():
     global BackgroundImage
     global START
     global END
     global sound
-    BackgroundImage = load_image("Resource\\UI\\BG.png")
+    global banana
+
+    BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
     START = load_image('Resource\\UI\\start.png')
     END = load_image('Resource\\UI\\ENDpng.png')
+    banana = load_image('Resource\\character\\Banana\\sittingBanana.png')
     sound = load_music('Resource\\IngameBGM\\On the Long journey.mp3')
     sound.set_volume(20)
     sound.play()
@@ -64,11 +68,14 @@ def handle_events():
                 game_framework.change_state(main_state)
 
 
+frame = 0
 def draw():
     global startSelect
     global endSelect
+    global frame
     clear_canvas()
-    BackgroundImage.draw(800, 400)
+    BackgroundImage.draw(800, 400, 1600, 800)
+    banana.clip_draw(frame * 150, 0, 150, 150, 1200, 190)
     START.clip_draw(startSelect * 129, 0, 129, 25, 800, 300)
     END.clip_draw(0, endSelect * 17, 31, 17, 800, 250, 60, 20)
     update_canvas()
