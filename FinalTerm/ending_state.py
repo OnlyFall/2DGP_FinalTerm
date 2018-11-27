@@ -17,6 +17,7 @@ name = "EndingState"
 
 BackgroundImage = None
 banana = None
+score = 0
 
 def enter():
     #뒷배경 로드(BG폴더에서 할 예정)
@@ -39,8 +40,9 @@ def pause():
 def resume():
     pass
 
-def loadScore():
-    pass
+def loadScore(insert):
+    global score
+    score = insert
 
 
 
@@ -62,11 +64,18 @@ def update():
 
 font = None
 def draw():
+    global font
+    global score
+    if font == None:
+        font = load_font('ENCR10B.TTF', 20)
     #font = load_font()
     clear_canvas()
     BackgroundImage.draw(800, 400, 1600, 800)
     for game_object in game_world.all_objects():
         game_object.draw()
+
+    font.draw(800, 400, "Score!!!!!!!", (255, 255, 255))
+    font.draw(800, 350, score, (255, 255, 255))
     update_canvas()
 
 
