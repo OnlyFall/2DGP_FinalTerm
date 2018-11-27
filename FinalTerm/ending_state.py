@@ -37,6 +37,9 @@ def pause():
 def resume():
     pass
 
+def loadScore():
+    pass
+
 
 
 def handle_events():
