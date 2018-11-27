@@ -74,8 +74,8 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    font.draw(800, 400, "Score!!!!!!!", (255, 255, 255))
-    font.draw(800, 350, str(score), (255, 255, 255))
+    font.draw(730, 400, "Score!!!!!!!", (255, 255, 255))
+    font.draw(760, 350, str(score), (255, 255, 255))
     update_canvas()
 
 
