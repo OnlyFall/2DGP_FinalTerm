@@ -35,6 +35,7 @@ def exit():
     global START
     global END
     global sound
+    del(sound)
     del(BackgroundImage)
     del(START)
     del(END)

@@ -18,18 +18,26 @@ name = "EndingState"
 BackgroundImage = None
 banana = None
 score = 0
+sound = None
 
 def enter():
     #뒷배경 로드(BG폴더에서 할 예정)
     global BackgroundImage
     global banana
+    global sound
+
     banana = Banana()
     BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
     game_world.add_object(banana, 0)
+    sound = load_music('Resource\\IngameBGM\\On the Long journey.mp3')
+    sound.set_volume(20)
+    sound.play()
 
 
 def exit():
     global BackgroundImage
+    global sound
+    del(sound)
     del(BackgroundImage)
     pass
 
