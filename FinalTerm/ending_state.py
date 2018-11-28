@@ -78,22 +78,29 @@ def update():
 
 
 
-font = None
+smallfont = None
+bigfont = None
+
 def draw():
-    global font
+    global smallfont
+    global bigfont
     global score
-    if font == None:
-        font = load_font('ENCR10B.TTF', 20)
+    if smallfont == None:
+        smallfont = load_font('ENCR10B.TTF', 20)
+
+    if bigfont == None:
+        bigfont = load_font('ENCR10B.TTF', 40)
+
     #font = load_font()
     clear_canvas()
     BackgroundImage.draw(800, 400, 1600, 800)
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    font.draw(730, 400, "Score!!!!!!!", (255, 255, 255))
-    font.draw(760, 350, str(printScore), (255, 255, 255))
+    bigfont.draw(680, 400, "Score!!!!!!!", (255, 255, 255))
+    bigfont.draw(760, 350, str(printScore), (255, 255, 255))
 
-    font.draw(600, 100, "Press 'R' key is Restart", (255, 255, 255))
+    smallfont.draw(650, 250, "Press 'R' key is Restart", (255, 255, 255))
     update_canvas()
 
 
