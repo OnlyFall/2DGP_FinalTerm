@@ -62,7 +62,6 @@ def handle_events():
         elif(event.type == SDL_MOUSEBUTTONDOWN):
             if startSelect == 1:
                 game_framework.change_state(main_state)
-                game_framework.change_state(ending_state)
             elif endSelect == 1:
                 game_framework.quit()
 
