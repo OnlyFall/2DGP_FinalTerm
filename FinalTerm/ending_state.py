@@ -19,6 +19,7 @@ BackgroundImage = None
 banana = None
 score = 0
 sound = None
+printScore = 0
 
 def enter():
     #뒷배경 로드(BG폴더에서 할 예정)
@@ -26,6 +27,7 @@ def enter():
     global banana
     global sound
 
+    printScore = 0
     banana = Banana()
     BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
     game_world.add_object(banana, 0)
@@ -39,7 +41,6 @@ def exit():
     global sound
     del(sound)
     del(BackgroundImage)
-    pass
 
 def pause():
     pass
@@ -61,11 +62,18 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.quit()
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_r:
+                game_framework.change_state(title_state)
+
 
 
 def update():
+    global printScore
     for game_object in game_world.all_objects():
         game_object.update()
+
+    if printScore < score:
+        printScore += 1
 
 
 
@@ -83,7 +91,9 @@ def draw():
         game_object.draw()
 
     font.draw(730, 400, "Score!!!!!!!", (255, 255, 255))
-    font.draw(760, 350, str(score), (255, 255, 255))
+    font.draw(760, 350, str(printScore), (255, 255, 255))
+
+    font.draw(600, 100, "Press 'R' key is Restart", (255, 255, 255))
     update_canvas()
 
 

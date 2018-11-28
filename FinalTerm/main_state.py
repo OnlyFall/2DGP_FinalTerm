@@ -95,6 +95,7 @@ def update():
             ShootPatern.Pattern4()
         elif stage == 5:
             ShootPatern.Pattern5()
+        userScore += 50
 
     for game_object in game_world.check_object(2):
         if game_world.collide(game_object, banana):
@@ -107,8 +108,7 @@ def update():
 
             game_world.remove_object(game_object)
             health.crashCount(hart)
-        else:
-            userScore += 10
+
 
 
     for game_object in game_world.all_objects():
