@@ -26,6 +26,7 @@ def enter():
     global BackgroundImage
     global banana
     global sound
+    global printScore
 
     printScore = 0
     banana = Banana()

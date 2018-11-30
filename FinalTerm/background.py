@@ -5,9 +5,9 @@ class Back:
         self.change = False
         self.stage1 = load_image('Resource\\BG\\Stage1Map1.bmp')
         self.stage2 = load_image('Resource\\BG\\Stage1Map2.bmp')
-        self.stage3 = load_image('Resource\\BG\\Stage1Map1.bmp')
-        self.stage4 = load_image('Resource\\BG\\Stage1Map1.bmp')
-        self.stage5 = load_image('Resource\\BG\\Stage1Map1.bmp')
+        self.stage3 = load_image('Resource\\BG\\Stage1Map2.bmp')
+        self.stage4 = load_image('Resource\\BG\\Stage1Map2.bmp')
+        self.stage5 = load_image('Resource\\BG\\Stage1Map2.bmp')
 
         self.step1 = load_image('Resource\\STEP\\PT_0005.png')
         self.step2 = load_image('Resource\\STEP\\PT_0004.png')
