@@ -44,6 +44,7 @@ def enter():
     global hart
     global userScore, printScore
     global HitSound
+    global skillGage
 
 
     if HitSound == None:
@@ -51,6 +52,7 @@ def enter():
     hart = 0
     userScore = 0
     printScore = 0
+    skillGage = 0
     stageCount = get_time()
     shootingTime = stageCount
     stage = random.randint(1,3)
@@ -65,7 +67,6 @@ def enter():
 
 def exit():
     global HitSound
-    del(HitSound)
     game_world.clear()
 
 def pause():
@@ -131,8 +132,8 @@ def update():
         if skillUseCheck == False:
             skillGage += 1
         else:
-            skillGage -= 1
-            if skillGage < 1:
+            skillGage -= 3
+            if skillGage < 2:
                 skillUseCheck = False
                 banana.skillUse(False)
 
