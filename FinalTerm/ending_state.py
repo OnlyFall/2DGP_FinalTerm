@@ -42,6 +42,7 @@ def exit():
     global sound
     del(sound)
     del(BackgroundImage)
+    game_world.clear()
 
 def pause():
     pass

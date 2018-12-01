@@ -10,9 +10,14 @@ BackgroundImage = None
 START = None
 END = None
 sound = None
+font = None
 startSelect = 0
 endSelect = 1
 banana = None
+
+R = 255
+G = 255
+B = 255
 
 def enter():
     global BackgroundImage
@@ -20,6 +25,10 @@ def enter():
     global END
     global sound
     global banana
+    global font
+
+    if font == None:
+        font = load_font('ENCR10B.TTF', 60)
 
     BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
     START = load_image('Resource\\UI\\start.png')
@@ -77,10 +86,13 @@ def draw():
     global startSelect
     global endSelect
     global frame
+    global font
     clear_canvas()
     BackgroundImage.draw(800, 400, 1600, 800)
     START.clip_draw(startSelect * 129, 0, 129, 25, 800, 300)
     END.clip_draw(0, endSelect * 17, 31, 17, 800, 250, 60, 20)
+    font.draw(700, 500, "Banana", (255, 255, 255))
+    font.draw(660, 440, "Survivor", (255, 255, 255))
 
     for game_object in game_world.all_objects():
         game_object.draw()
