@@ -17,6 +17,7 @@ from background import Back
 name = "MainState"
 #사용자 점수, 목숨
 userScore = 0
+printScore = 0
 hart = 0
 
 banana = None
@@ -34,10 +35,11 @@ def enter():
     global StageCount
     global shootingTime
     global hart
-    global userScore
+    global userScore, printScore
 
     hart = 0
     userScore = 0
+    printScore = 0
     stageCount = get_time()
     shootingTime = stageCount
     stage = 3
@@ -77,6 +79,8 @@ def update():
     global StageCount, back, Launchlatency, hart
     global stage
     global userScore
+    global printScore
+
     if get_time() - StageCount > 30:
         back.MapChangeButton()
         stage = random.randint(1, 3)
@@ -115,16 +119,23 @@ def update():
     for game_object in game_world.all_objects():
         game_object.update()
 
+    if printScore < userScore:
+        printScore += 1
+
 
 font = None
 
 def draw():
     global font
-
+    global printScore
+    if font == None:
+        font = load_font('ENCR10B.TTF', 20)
 
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
+
+    font.draw(1400, 700, "Score : %d" % int(printScore), (255, 255, 255))
 
     update_canvas()
 
