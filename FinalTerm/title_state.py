@@ -36,6 +36,7 @@ def exit():
     global START
     global END
     global sound
+    game_world.clear()
     del(sound)
     del(BackgroundImage)
     del(START)

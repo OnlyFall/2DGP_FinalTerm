@@ -307,6 +307,7 @@ class Banana:
         self.event_que = []
         self.cur_state = IdleState
         self.stage = stage
+        self. energy = 0
 
         self.CrashImageStage1 = PIL.Image.open("Resource\\STEP\\PT_0005.png")
         self.CrashImageStage2 = PIL.Image.open("Resource\\STEP\\PT_0004.png")
