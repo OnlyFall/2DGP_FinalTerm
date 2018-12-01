@@ -9,7 +9,10 @@ name = "TitleState"
 BackgroundImage = None
 START = None
 END = None
+
 sound = None
+selectSound = None
+
 font = None
 startSelect = 0
 endSelect = 1
@@ -23,7 +26,7 @@ def enter():
     global BackgroundImage
     global START
     global END
-    global sound
+    global sound, selectSound
     global banana
     global font
 
@@ -36,6 +39,7 @@ def enter():
     banana = Banana()
     game_world.add_object(banana, 0)
     sound = load_music('Resource\\IngameBGM\\On the Long journey.mp3')
+    selectSound = load_wav('Resource\\Sound\\Select.wav')
     sound.set_volume(20)
     sound.play()
 
@@ -44,9 +48,11 @@ def exit():
     global BackgroundImage
     global START
     global END
-    global sound
+    global sound, selectSound
+
     game_world.clear()
     del(sound)
+    del(selectSound)
     del(BackgroundImage)
     del(START)
     del(END)
@@ -54,6 +60,9 @@ def exit():
 
 def handle_events():
     global startSelect, endSelect
+    global selectSound
+    StartsoundPlay = False
+    EndsoundPlay = False
     events = get_events()
     for event in events:
         if(event.type == SDL_MOUSEMOTION):

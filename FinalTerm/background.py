@@ -1,4 +1,5 @@
 from pico2d import *
+from Banana import Banana
 PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
@@ -47,6 +48,9 @@ class Back:
 
     def stageUpdate(self, stage):
         self.stage = stage
+
+    def returnChangeMapResult(self):
+        return self.change
 
     def draw(self):
 

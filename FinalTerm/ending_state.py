@@ -32,7 +32,7 @@ def enter():
     banana = Banana()
     BackgroundImage = load_image("Resource\\BG\\title_stateImage.png")
     game_world.add_object(banana, 0)
-    sound = load_music('Resource\\IngameBGM\\On the Long journey.mp3')
+    sound = load_wav('Resource\\Sound\\Dead.wav')
     sound.set_volume(20)
     sound.play()
 

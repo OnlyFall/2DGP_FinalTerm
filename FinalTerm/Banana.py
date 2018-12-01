@@ -64,6 +64,9 @@ class IdleState:
     @staticmethod
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
+        banana.skillFrame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
+
+
 
         if banana.stage == 1:
             r, g, b, a = banana.CrashImageStage1.getpixel((banana.x + 100, 800 - banana.y - 30))
@@ -76,15 +79,17 @@ class IdleState:
         elif banana.stage == 5:
             r, g, b, a = banana.CrashImageStage5.getpixel((banana.x + 100, 800 - banana.y - 30))
 
+        if banana.Mapchange == False:
+            if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
+                pass
 
-        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
-            pass
+            else:
+                if banana.y > 90:
+                    banana.add_event(DOWN)
 
         else:
             if banana.y > 90:
-                 banana.add_event(DOWN)
-                 pass
-
+                banana.add_event(DOWN)
 
 
     @staticmethod
@@ -95,6 +100,9 @@ class IdleState:
         else:
             banana.image.opacify(1)
             banana.image.clip_draw(int(banana.frame) * 150, 0, 150, 150, banana.x, banana.y)
+
+        if banana.skillUseCheck == True:
+            banana.skillImage.clip_draw(int(banana.skillFrame) * 192, 192, 192, 192, banana.x, banana.y)
 
 
 class RunState:
@@ -124,6 +132,7 @@ class RunState:
     @staticmethod
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 6
+        banana.skillFrame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
         banana.x += banana.velocity * game_framework.frame_time
         banana.x = clamp(25, banana.x, 1600 - 25)
 
@@ -138,10 +147,13 @@ class RunState:
         elif banana.stage == 5:
             r, g, b, a = banana.CrashImageStage5.getpixel((banana.x + 100, 800 - banana.y - 30))
 
+        if banana.Mapchange == False:
+            if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
+                pass
 
-        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
-            pass
-
+            else:
+                if banana.y > 90:
+                    banana.add_event(DOWN)
         else:
             if banana.y > 90:
                 banana.add_event(DOWN)
@@ -154,6 +166,9 @@ class RunState:
         else:
             banana.image.opacify(1)
             banana.image.clip_draw(int(banana.frame) * 150, 300, 150, 150, banana.x, banana.y)
+
+        if banana.skillUseCheck == True:
+            banana.skillImage.clip_draw(int(banana.skillFrame) * 192, 192, 192, 192, banana.x, banana.y)
 
 
 class JumpUpState:
@@ -183,6 +198,8 @@ class JumpUpState:
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         banana.x += banana.velocity * game_framework.frame_time
+        banana.skillFrame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
+
         if banana.dir == 1:
             banana.jumpRange += 200 * game_framework.frame_time * 2
             banana.y += 200 * game_framework.frame_time * 2
@@ -207,6 +224,9 @@ class JumpUpState:
         else:
             banana.image.opacify(1)
             banana.JumpImage.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
+
+        if banana.skillUseCheck == True:
+            banana.skillImage.clip_draw(int(banana.skillFrame) * 192, 192, 192, 192, banana.x, banana.y)
 
 
 class JumpDownState:
@@ -235,6 +255,8 @@ class JumpDownState:
     def do(banana):
         banana.frame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         banana.x += banana.velocity * game_framework.frame_time
+        banana.skillFrame = (banana.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 5
+
         if banana.dir == 1:
             banana.y -= 200 * game_framework.frame_time * 2
         else:
@@ -260,12 +282,13 @@ class JumpDownState:
         elif banana.stage == 5:
             r, g, b, a = banana.CrashImageStage5.getpixel((banana.x + 100, 800 - banana.y - 30))
 
-        if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
-            banana.landingSound.play()
-            if banana.velocity > 0 or banana.velocity < 0:
-                banana.add_event(END_RUN)
-            else:
-                banana.add_event(END_IDLE)
+        if banana.Mapchange == False:
+            if (r, g, b) == (78, 201, 17) or (r, g, b) == (67, 119, 108) or (r, g, b) == (45, 132, 114) or (r, g, b) == (106, 150, 194) or (r, g, b) == (70, 106, 144) or (r, g, b) == (46, 79, 114) or (r, g, b) == (78, 163, 146):
+                banana.landingSound.play()
+                if banana.velocity > 0 or banana.velocity < 0:
+                    banana.add_event(END_RUN)
+                else:
+                    banana.add_event(END_IDLE)
 
     @staticmethod
     def draw(banana):
@@ -275,6 +298,11 @@ class JumpDownState:
         else:
             banana.image.opacify(1)
             banana.LandingImage.clip_draw(int(banana.frame) * 150, 150, 150, 150, banana.x, banana.y)
+
+        if banana.skillUseCheck == True:
+            banana.skillImage.clip_draw(int(banana.skillFrame) * 192, 192, 192, 192, banana.x, banana.y)
+
+
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SPACE: JumpUpState,
@@ -300,14 +328,18 @@ class Banana:
         self.image = load_image('Resource\\character\\Banana\\totalBanana.png')
         self.LandingImage = load_image('Resource\\character\\Banana\\LandingBanana.png')
         self.JumpImage = load_image('Resource\\character\\Banana\\JumpBanana.png')
+        self.skillImage = load_image('Resource\\SkillImage\\Skill.png')
 
+        self.skillUseCheck = False
         self.dir = 1
         self.velocity = 0
         self.frame = 0
+        self.skillFrame = 0
         self.event_que = []
         self.cur_state = IdleState
         self.stage = stage
         self. energy = 0
+        self.Mapchange = False
 
         self.CrashImageStage1 = PIL.Image.open("Resource\\STEP\\PT_0005.png")
         self.CrashImageStage2 = PIL.Image.open("Resource\\STEP\\PT_0004.png")
@@ -326,9 +358,14 @@ class Banana:
     def StageUpdate(self, stage):
         self.stage = stage
 
+    def ChangeMap(self, bool):
+        self.Mapchange = bool
+
     def get_bb(self):
         return self.x - 30, self.y - 50, self.x + 25, self.y + 50
 
+    def skillUse(self, bool):
+        self.skillUseCheck = bool
 
     def update(self):
         self.cur_state.do(self)
