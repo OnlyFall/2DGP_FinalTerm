@@ -14,6 +14,10 @@ from Health import Health
 from Banana import Banana
 from background import Back
 
+from collections import  OrderedDict
+loadRank = []
+tmpRank = []
+
 name = "MainState"
 #사용자 점수, 목숨
 userScore = 0
@@ -108,6 +112,7 @@ def handle_events():
 
 
 def update():
+    file_data = OrderedDict()
     global StageCount, back, Launchlatency, hart
     global stage
     global userScore
@@ -158,6 +163,19 @@ def update():
                     hart += 1
                 else:
                     back.endMusic()
+                    with open('Rank.json', 'r', encoding="utf-8") as f:
+                        loadRank = json.load(f)
+                    k = loadRank["Rank"]
+                    tmpRank = k
+
+                    tmpRank.append(userScore)
+                    file_data["Rank"] = tmpRank
+
+                    # loadRank.append(save_time)
+
+                    with open('Rank.json', 'w', encoding="utf-8") as f:
+                        json.dump(file_data, f, ensure_ascii=False, indent="\t")
+
                     ending_state.loadScore(userScore)
                     game_framework.change_state(ending_state) #여기에 체력 다 사라지면 결과창으로 넘어감
 

@@ -20,6 +20,7 @@ banana = None
 score = 0
 sound = None
 printScore = 0
+Rank = []
 
 def enter():
     #뒷배경 로드(BG폴더에서 할 예정)
@@ -35,6 +36,15 @@ def enter():
     sound = load_wav('Resource\\Sound\\Dead.wav')
     sound.set_volume(20)
     sound.play()
+
+    global Rank
+    with open('Rank.json', 'r') as f:
+        temp = json.load(f)
+
+        k = temp["Rank"]
+        Rank = k
+
+    Rank.sort(reverse=True)
 
 
 def exit():
@@ -99,7 +109,8 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    bigfont.draw(680, 400, "Score!!!!!!!", (255, 255, 255))
+    bigfont.draw(610, 600, "Best Score : %d" % Rank[0], (255, 255, 255))
+    bigfont.draw(720, 400, "Score", (255, 255, 255))
     bigfont.draw(760, 350, str(printScore), (255, 255, 255))
 
     smallfont.draw(650, 250, "Press 'R' key is Restart", (255, 255, 255))
