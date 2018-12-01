@@ -15,11 +15,15 @@ class Back:
         self.step4 = load_image('Resource\\STEP\\PT_0002.png')
         self.step5 = load_image('Resource\\STEP\\PT_0001.png')
         self.stage = stage
+        self.beforeStage = stage
 
         self.volume = load_music('Resource\\IngameBGM\\Town8.mp3')
         self.volume.set_volume(40)
         self.volume.play()
     def update(self):
+        pass
+
+    def scroll(self):
         pass
 
     def endMusic(self):
@@ -35,18 +39,32 @@ class Back:
     def draw(self):
         self.stage1.clip_draw(0, 0, 1600, 800, 1600 // 2, 800 // 2)
 
-        if self.stage == 1:
-            self.step1.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
+        if self.change:
+            if self.beforeStage == 1:
+                self.stage1.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
+            if self.beforeStage == 2:
+                pass
+            if self.beforeStage == 3:
+                pass
+            if self.beforeStage == 4:
+                pass
+            if self.beforeStage == 5:
+                pass
+            
 
-        elif self.stage == 2:
-            self.step2.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
+        else:
+            if self.stage == 1:
+                self.step1.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
 
-        elif self.stage == 3:
-            self.step3.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
+            elif self.stage == 2:
+                self.step2.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
 
-        elif self.stage == 4:
-            self.step4.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
+            elif self.stage == 3:
+                self.step3.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
 
-        elif self. stage == 5:
-            self.step5.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
-        #self.image.draw(1200, 30)
+            elif self.stage == 4:
+                self.step4.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
+
+            elif self.stage == 5:
+                self.step5.clip_draw(100, 50, 1600, 800, 1600 // 2, 800 // 2 - 50)
+

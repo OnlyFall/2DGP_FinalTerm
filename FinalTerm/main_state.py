@@ -77,7 +77,8 @@ def update():
     global StageCount, back, Launchlatency, hart
     global stage
     global userScore
-    if get_time() - StageCount > 10:
+    if get_time() - StageCount > 30:
+        back.MapChangeButton()
         stage = random.randint(1, 3)
         back.stageUpdate(stage)
         banana.StageUpdate(stage)
