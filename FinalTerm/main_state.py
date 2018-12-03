@@ -148,7 +148,7 @@ def update():
         elif stage == 2:
             ShootPatern.Pattern2()
         elif stage == 3:
-            ShootPatern.Pattern3( )
+            ShootPatern.Pattern3()
         elif stage == 4:
             ShootPatern.Pattern4()
         elif stage == 5:
